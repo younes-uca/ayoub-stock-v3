@@ -1,0 +1,66 @@
+
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="{{'avoirAchat.tabPan' | translate}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="{{'avoirAchat.tabPan' | translate}}">
+                <div class="grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="1">{{'avoirAchat.entrepriseSociete' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'avoirAchat.entrepriseSociete' | translate}}" autofocus  id="1" [(ngModel)]="item.entrepriseSociete.nom">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="2">{{'avoirAchat.dateAvoir' | translate}}</label>
+                        <p-calendar id="2" [disabled]="true"  [showTime]="true" [showSeconds]="false" placeholder="{{'avoirAchat.dateAvoir' | translate}}"  [(ngModel)]="item.dateAvoir" dateFormat="{{dateFormat}}"></p-calendar>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="3">{{'avoirAchat.montant' | translate}}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="3" [disabled]="true" placeholder="{{'avoirAchat.montant' | translate}}" [(ngModel)]="item.montant"></p-inputNumber>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="4">{{'avoirAchat.achat' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'avoirAchat.achat' | translate}}" autofocus  id="4" [(ngModel)]="item.achat.id">
+                    </div>
+                </div>
+            </p-tabPanel>
+
+            <p-tabPanel header="{{'avoirAchat.avoirAchatItems' | translate}}">
+                <div class="grid">
+                    <div class="col">
+                        <div class="card">
+                            <p-table [value]="item.avoirAchatItems" [scrollable]="true" scrollHeight="200px">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>Produit</th>
+                                        <th>Montant avoir</th>
+                                        <th>Quantite</th>
+                                        <th>Depot</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-p>
+                                    <tr>
+                                        <td>{{p.produit.reference}}</td>
+                                        <td>{{p.montantAvoir}}</td>
+                                        <td>{{p.quantite}}</td>
+                                        <td>{{p.depot.libelle}}</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="grid-footer">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+

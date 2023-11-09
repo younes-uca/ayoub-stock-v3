@@ -1,0 +1,55 @@
+        <p-dialog [(visible)]="editDialog" [style]="{width: '70vw'}" header="{{'instrument.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+            <ng-template pTemplate="content" >
+                <p-tabView>
+                    <p-tabPanel header="{{'instrument.tabPan' | translate}}">
+                        <div class="grid">
+
+                                    <div class="field col-11 md:col-6">
+                                        <label for="1">{{'instrument.typeInstrument' | translate}}</label>
+                                        <p-dropdown  appendTo="body"  [options]="typeInstruments" [(ngModel)]="item.typeInstrument" id="1" [filter]="true" filterMatchMode="contains"
+                                                [showClear]="true" optionLabel="libelle" placeholder="{{'instrument.typeInstrument' | translate}}"  >
+                                        </p-dropdown>
+                                        
+                                    </div>
+                                    <div class="field col-11 md:col-6">
+                                        <label for="2">{{'instrument.chequeEffet' | translate}}</label>
+                                        <p-dropdown  appendTo="body"  [options]="chequeEffets" [(ngModel)]="item.chequeEffet" id="2" [filter]="true" filterMatchMode="contains"
+                                                [showClear]="true" optionLabel="id" placeholder="{{'instrument.chequeEffet' | translate}}"  >
+                                        </p-dropdown>
+                                        
+                                    </div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="3">{{'instrument.dateEmission' | translate}}</label>
+                                            <p-calendar appendTo="body" id="3"  [showTime]="true" [showSeconds]="false" placeholder="{{'instrument.dateEmission' | translate}}"  [(ngModel)]="item.dateEmission"
+                                                    dateFormat="{{dateFormat}}"  >
+                                            </p-calendar>
+                                            
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="4">{{'instrument.montant' | translate}}</label>
+                                            <p-inputNumber class="mb-2 mr-2" id="4" placeholder="{{'instrument.montant' | translate}}" [(ngModel)]="item.montant"  >
+                                            </p-inputNumber>
+                                            
+                                        </div>
+
+                        </div>
+                    </p-tabPanel>
+
+                </p-tabView>
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="grid-footer">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideEditDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check" style="margin:10px" (click)="edit()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+
+
+    </p-dialog>

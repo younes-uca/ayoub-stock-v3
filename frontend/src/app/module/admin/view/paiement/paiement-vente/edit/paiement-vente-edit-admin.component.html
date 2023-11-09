@@ -1,0 +1,71 @@
+        <p-dialog [(visible)]="editDialog" [style]="{width: '70vw'}" header="{{'paiementVente.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+            <ng-template pTemplate="content" >
+                <p-tabView>
+                    <p-tabPanel header="{{'paiementVente.tabPan' | translate}}">
+                        <div class="grid">
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="1">{{'paiementVente.reference' | translate}}<span style="color: red;">*</span></label>
+                                            <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'paiementVente.reference' | translate}}" id="1" [(ngModel)]="item.reference"
+                                                    [ngClass]="{'ng-invalid ng-dirty' : !validPaiementVenteReference}"  />
+                                            <small class='p-error' *ngIf='!validPaiementVenteReference'>Reference est obligatoire.</small>
+                                        </div>
+
+
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="2">{{'paiementVente.datePaiement' | translate}}<span style="color: red;">*</span></label>
+                                            <p-calendar appendTo="body" id="2"  [showTime]="true" [showSeconds]="false" placeholder="{{'paiementVente.datePaiement' | translate}}"  [(ngModel)]="item.datePaiement"
+                                                    dateFormat="{{dateFormat}}" [ngClass]="{'ng-invalid ng-dirty' : !validPaiementVenteDatePaiement}"  >
+                                            </p-calendar>
+                                            <small class='p-error' *ngIf='!validPaiementVenteDatePaiement'>DatePaiement est obligatoire.</small>
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="3">{{'paiementVente.montant' | translate}}<span style="color: red;">*</span></label>
+                                            <p-inputNumber class="mb-2 mr-2" id="3" placeholder="{{'paiementVente.montant' | translate}}" [(ngModel)]="item.montant" [ngClass]="{'ng-invalid ng-dirty' : !validPaiementVenteMontant}"  >
+                                            </p-inputNumber>
+                                            <small class='p-error' *ngIf='!validPaiementVenteMontant'>Montant est obligatoire.</small>
+                                        </div>
+
+                                    <div class="field col-11 md:col-6">
+                                        <label for="4">{{'paiementVente.vente' | translate}}<span style="color: red;">*</span></label>
+                                        <p-dropdown  appendTo="body"  [options]="ventes" [(ngModel)]="item.vente" id="4" [filter]="true" filterMatchMode="contains"
+                                                [showClear]="true" optionLabel="id" placeholder="{{'paiementVente.vente' | translate}}" [ngClass]="{'ng-invalid ng-dirty' : !validPaiementVenteVente}"  >
+                                        </p-dropdown>
+                                        <small class='p-error' *ngIf='!validPaiementVenteVente'>Vente est obligatoire.</small>
+                                    </div>
+                                    <div class="field col-11 md:col-6">
+                                        <label for="5">{{'paiementVente.modePaiement' | translate}}<span style="color: red;">*</span></label>
+                                        <p-dropdown  appendTo="body"  [options]="modePaiements" [(ngModel)]="item.modePaiement" id="5" [filter]="true" filterMatchMode="contains"
+                                                [showClear]="true" optionLabel="libelle" placeholder="{{'paiementVente.modePaiement' | translate}}" [ngClass]="{'ng-invalid ng-dirty' : !validPaiementVenteModePaiement}"  >
+                                        </p-dropdown>
+                                        <small class='p-error' *ngIf='!validPaiementVenteModePaiement'>ModePaiement est obligatoire.</small>
+                                    </div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="6">{{'paiementVente.description' | translate}}</label>
+                                            <textarea id="6" pInputTextarea rows="5" cols="30" placeholder="{{'paiementVente.description' | translate}}"  [(ngModel)]="item.description"
+                                                     ></textarea>
+                                            
+                                        </div>
+
+                        </div>
+                    </p-tabPanel>
+
+                </p-tabView>
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="grid-footer">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideEditDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check" style="margin:10px" (click)="edit()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+
+
+    </p-dialog>

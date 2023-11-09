@@ -1,0 +1,101 @@
+        <p-dialog [(visible)]="createDialog" [style]="{width: '70vw'}" header="{{'permutation.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+            <ng-template pTemplate="content" >
+                        <p-tabView>
+                            <p-tabPanel header="{{'permutation.tabPan' | translate}}">
+                                <div class="grid">
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="1">{{'permutation.datePermutation' | translate}}<span style="color: red;">*</span></label>
+                                                    <p-calendar appendTo="body" id="1"  [showTime]="true" [showSeconds]="false" placeholder="{{'permutation.datePermutation' | translate}}"  [(ngModel)]="item.datePermutation"
+                                                            dateFormat="{{dateFormat}}" [ngClass]="{'ng-invalid ng-dirty' : !validPermutationDatePermutation}"  >
+                                                    </p-calendar>
+                                                    <small class='p-error' *ngIf='!validPermutationDatePermutation'>DatePermutation est obligatoire.</small>
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="2">{{'permutation.description' | translate}}</label>
+                                                    <textarea id="2" pInputTextarea rows="5" cols="30" placeholder="{{'permutation.description' | translate}}"  [(ngModel)]="item.description"
+                                                             ></textarea>
+                                                    
+                                                </div>
+
+                                </div>
+                            </p-tabPanel>
+                                    <p-tabPanel header="{{'permutation.permutationItems' | translate}}">
+                                                <div class="p-col">
+                                                    <div class="grid">
+                                                                    <div class="field col-11 md:col-6">
+                                                                        <label>Produit<span style="color: red;">*</span></label>
+                                                                        <p-dropdown  appendTo="body"  [options]="produits" [(ngModel)]="permutationItemsElement.produit"
+                                                                                     id="1"  [filter]="true" filterMatchMode="contains" [showClear]="true" optionLabel="reference"
+                                                                                     placeholder="Produit"  [ngClass]="{'ng-invalid ng-dirty' : !validPermutationItemsProduit}" >
+                                                                        </p-dropdown>
+                                                                        <small class='p-error' *ngIf='!validPermutationItemsProduit'>Produit est obligatoire.</small>
+                                                                    </div>
+                                                                    <div class="field col-12 md:col-6">
+                                                                        <label for="2">Quantite<span style="color: red;">*</span></label>
+                                                                        <p-inputNumber class="mb-2 mr-2" id="quantite" placeholder="Quantite"  [ngClass]="{'ng-invalid ng-dirty' : !validPermutationItemsQuantite}" [(ngModel)]="permutationItemsElement.quantite"></p-inputNumber>
+                                                                        <small class='p-error' *ngIf='!validPermutationItemsQuantite'>Quantite est obligatoire.</small>
+                                                                    </div>
+                                                                    <div class="field col-11 md:col-6">
+                                                                        <label>Depot</label>
+                                                                        <p-dropdown  appendTo="body"  [options]="depots" [(ngModel)]="permutationItemsElement.depot"
+                                                                                     id="3"  [filter]="true" filterMatchMode="contains" [showClear]="true" optionLabel="libelle"
+                                                                                     placeholder="Depot"  >
+                                                                        </p-dropdown>
+                                                                        
+                                                                    </div>
+                                                        <div class="field col-12 md:col-1">
+                                                            <button pButton pRipple type="button" icon="pi pi-plus" class="mt-4" label="OK" (click)="addPermutationItems()"></button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="p-col">
+                                                    <div class="card">
+                                                        <p-table [value]="item.permutationItems" [scrollable]="true" scrollHeight="200px">
+                                                            <ng-template pTemplate="header">
+                                                                <tr>
+                                                                                <th>Produit</th>
+                                                                                <th>Quantite</th>
+                                                                                <th>Depot</th>
+                                                                    <th>Actions</th>
+                                                                </tr>
+                                                            </ng-template>
+                                                            <ng-template pTemplate="body" let-p>
+                                                                <tr>
+                                                                            <td>{{p.produit?.reference}}</td>
+                                                                                <td>{{p.quantite}}</td>
+                                                                            <td>{{p.depot?.libelle}}</td>
+                                                                    <td>
+                                                                        <button (click)="deletePermutationItems(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger"></button>
+                                                                        <button (click)="editPermutationItems(p)" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-template>
+                                                        </p-table>
+                                                    </div>
+
+                                                </div>
+                                    </p-tabPanel>
+
+
+                        </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="grid-step">
+                        <div style="margin-left: auto;">
+                            <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check" style="margin:10px" (click)="save()"></button>
+                        </div>
+                        <div>
+                            <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hideCreateDialog()"></button>
+                        </div>
+
+                </div>
+            </ng-template>
+
+
+
+    </p-dialog>

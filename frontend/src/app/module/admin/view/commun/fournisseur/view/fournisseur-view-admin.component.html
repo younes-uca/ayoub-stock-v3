@@ -1,0 +1,56 @@
+
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="{{'fournisseur.tabPan' | translate}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="{{'fournisseur.tabPan' | translate}}">
+                <div class="grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="1">{{'fournisseur.nom' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'fournisseur.nom' | translate}}" autofocus  id="1" [(ngModel)]="item.nom">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="2">{{'fournisseur.ice' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'fournisseur.ice' | translate}}" autofocus  id="2" [(ngModel)]="item.ice">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="3">{{'fournisseur.telephone' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'fournisseur.telephone' | translate}}" autofocus  id="3" [(ngModel)]="item.telephone">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="4">{{'fournisseur.infoBancaire' | translate}}</label>
+                        <textarea id="4" pInputTextarea rows="5" cols="30" [disabled]="true" placeholder="{{'fournisseur.infoBancaire' | translate}}"  [(ngModel)]="item.infoBancaire"></textarea>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="5">{{'fournisseur.ville' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'fournisseur.ville' | translate}}" autofocus  id="5" [(ngModel)]="item.ville.id">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="6">{{'fournisseur.adresse' | translate}}</label>
+                        <textarea id="6" pInputTextarea rows="5" cols="30" [disabled]="true" placeholder="{{'fournisseur.adresse' | translate}}"  [(ngModel)]="item.adresse"></textarea>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="7">{{'fournisseur.creance' | translate}}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="7" [disabled]="true" placeholder="{{'fournisseur.creance' | translate}}" [(ngModel)]="item.creance"></p-inputNumber>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="8">{{'fournisseur.description' | translate}}</label>
+                        <textarea id="8" pInputTextarea rows="5" cols="30" [disabled]="true" placeholder="{{'fournisseur.description' | translate}}"  [(ngModel)]="item.description"></textarea>
+                    </div>
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="grid-footer">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+

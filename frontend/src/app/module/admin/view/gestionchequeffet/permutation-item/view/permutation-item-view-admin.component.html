@@ -1,0 +1,40 @@
+
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="{{'permutationItem.tabPan' | translate}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="{{'permutationItem.tabPan' | translate}}">
+                <div class="grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="1">{{'permutationItem.produit' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'permutationItem.produit' | translate}}" autofocus  id="1" [(ngModel)]="item.produit.reference">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="2">{{'permutationItem.quantite' | translate}}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="2" [disabled]="true" placeholder="{{'permutationItem.quantite' | translate}}" [(ngModel)]="item.quantite"></p-inputNumber>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="3">{{'permutationItem.depot' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'permutationItem.depot' | translate}}" autofocus  id="3" [(ngModel)]="item.depot.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="4">{{'permutationItem.permutation' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'permutationItem.permutation' | translate}}" autofocus  id="4" [(ngModel)]="item.permutation.id">
+                    </div>
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="grid-footer">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+
